@@ -5,6 +5,28 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  padding: 60rpx 60rpx;
   box-sizing: border-box;
+}
+
+.mybtn{
+  display: block;
+  width: 70%;
+  margin: 40rpx auto;
 } 
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}

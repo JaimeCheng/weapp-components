@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/mymodal/mymodal",
+    "pages/mysheet/mysheet"
   ],
   "window":{
     "backgroundTextStyle":"light",
