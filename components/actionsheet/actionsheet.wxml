@@ -1,0 +1,8 @@
+<!--components/sheet.wxml-->
+
+<view hidden='{{!actionShow}}' class='mask {{mask}}' bindtap='actionHide'>
+  <view class='actionSheet animated {{animation}}'>
+    <slot></slot>
+    <button class='close' bindtap='actionHide'>{{closeText}}</button>
+  </view>
+</view>
