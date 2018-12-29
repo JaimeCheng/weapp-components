@@ -1,0 +1,26 @@
+<!--pages/modal/modal.wxml-->
+<view animation="{{animationData}}" class="mask" wx:if="{{showModalStatus}}">
+  <form class="dialog"  bindsubmit="confirmFunc">
+    <view wx:if="{{title !== ''}}" class="title">{{title}}</view>
+    <view wx:if="{{content !==  ''}}" class="content">
+      <text>{{content}}</text> 
+    </view>
+    <view wx:if="{{prompt}}" class="form">
+      <block wx:for="{{items}}" wx:key="{{index}}">
+        <text>{{item.label}}</text>
+        <input name="{{item.name}}"></input>
+      </block>
+    </view>
+    <view class="diaBtn">
+      <block wx:if="{{showCancel}}">
+        <button class="btn celbtn" hover-class="btnHover" bindtap="cancelFunc">{{cancelText}}</button>
+      </block>
+      <block wx:if="{{userData && !prompt}}">
+        <button class="btn cfirbtn" hover-class="btnHover" open-type="getUserInfo" bindgetuserinfo="getUserInfo">{{confirmText}}</button>
+      </block>
+      <block wx:else>
+        <button class="btn cfirbtn" hover-class="btnHover" form-type="submit">{{confirmText}}</button>
+      </block>
+    </view>
+  </form>
+</view>
