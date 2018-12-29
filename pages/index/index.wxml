@@ -1,5 +1,14 @@
 <!--index.wxml-->
 <view class="container">
-  <button bindtap="modal">1. 自定义modal示例</button>
-  <button bindtap="sheet">2. 自定义ActionSheet示例</button>
+  <view class="userinfo">
+    <block wx:if="{{hasUserInfo}}">
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text>当前状态：已授权，若想查看自定义modal主动弹出让用户进行授权操作的效果，点击下方按钮前往设置页清除授权后再进入自定义modal示例</text>
+    </block>
+    <view wx:else>当前状态：未授权</view>
+    <button open-type="openSetting" bindopensetting="openSetting">打开设置页</button>
+  </view>
+  <button type="primary" bindtap="modal">1. 自定义modal示例</button>
+  <button type="primary" bindtap="sheet">2. 自定义ActionSheet示例</button>
 </view>
