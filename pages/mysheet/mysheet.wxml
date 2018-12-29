@@ -1,23 +1,13 @@
 <!--pages/mysheet/mysheet.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{hasUserInfo}}">
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      <text>已授权，清除授权请打开ActionSheet前往设置页清除授权</text>
-    </block>
-    <view wx:else>未授权,请打开ActionSheet点击按钮授权</view>
-  </view>
   <button class="mybtn" type="primary" bindtap="openMysheet" >打开自定义ActionSheet</button>
-  <text>自定义ActionSheet组件为了避免转发、授权等开放能力只能绑定在button上而不能使用在小程序原生ActionSheet上的窘态。</text>
+  <text>自定义ActionSheet组件为了避免转发、授权、打开设置页等开放能力只能绑定在button上而不能使用在小程序原生ActionSheet上的窘态。此处仅以转发为例</text>
 </view>
 
-<!-- 自定义ActionSheet组件 actionShow: 组建显隐状态 closeText:关闭按钮文字-->
+<!-- 自定义ActionSheet组件 actionShow: 组件显隐状态 closeText:关闭按钮文字-->
 <action-sheet actionShow="{{actionStatus}}" closeText="关闭">
   <!-- slot ActionSheet 菜单项 只能是button 或 navigator -->
   <navigator url="../index/index">我是navigator: 回首页</navigator>
   <button bindtap="handleBtn">我是普通按钮</button>
   <button open-type="share">开放能力: 转发</button>
-  <button open-type="getUserInfo" wx:if="{{!hasUserInfo && canIUse}}" bindgetuserinfo="getUserInfo">开放能力: 点击按钮授权</button>
-  <button wx:else open-type="openSetting" bindopensetting="openSetting">开放能力: 打开设置页</button>
 </action-sheet>
