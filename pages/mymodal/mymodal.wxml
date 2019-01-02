@@ -14,12 +14,12 @@
 
 </view>
 
-<!-- 可提交表单模态框 -->
-<!-- 必须设置prompt属性为true，和表单输入项 form-item="{{items}}" -->
-<mymodal show-status="{{showPromptModal}}" prompt showCancel bind:complete="onPromptComplete" confirm-text="{{confirmText}}" form-items="{{items}}" title="{{title}}"></mymodal>
+<!-- 可提交表单模态框 type="prompt"-->
+<!--type = promp时，必须设置表单输入项 form-item="{{items}}" -->
+<!-- type=''或 不设置时就是普通模态框 和小程序原生的一样,没意义 -->
+<mymodal show-status="{{showPromptModal}}" type="prompt" showCancel bind:complete="onPromptComplete" content='{{content}}' confirm-text="{{confirmText}}" form-items="{{items}}" title="{{title}}"></mymodal>
 
 
-<!-- 可进行用户授权操作的模态框 -->
+<!-- 可进行用户授权操作的模态框 type="getUserInfo"-->
 <!-- show-status='{{showUserModal}}' 此处初始设为true为了演示用，项目中应先wx.getSetting查看用户是否已经授权，未授权初始设为true将主动弹出该弹框，若已授权初始设为false避免多次弹出-->
-<!-- user-data属性和prompt属性请不要同时设置 -->
-<mymodal show-status='{{showUserModal}}' user-data bind:complete="onUserInfoComplete"  content='{{content}}' confirm-text='{{confirmText}}' title='{{title}}'></mymodal>
+<mymodal show-status='{{showUserModal}}' type="getUserInfo" bind:complete="onUserInfoComplete"  content='{{content}}' confirm-text='{{confirmText}}' title='{{title}}'></mymodal>

@@ -47,16 +47,18 @@ Component({
 
       }
     },
-    //是否使用带表单提交的modal弹框
-    prompt: {
-      type: Boolean,
-      value: false,
+
+    //组件的类型
+    type: {
+      type: String,
+      value: '',
       observer: function (newVal, oldVal) {
         this.setData({
-          prompt: newVal
+          type: newVal
         })
       }
     },
+
     formItems: {
       type: Array,
       value: [],
@@ -66,16 +68,7 @@ Component({
         })
       }
     },
-    //确定按钮(confirmButton)是否绑定用户授权事件
-    userData: {
-      type: Boolean,
-      value: false,
-      observer: function (newVal, oldVal) { 
-        this.setData({
-          userData:newVal
-        })
-      } 
-    },
+
     //是否显示取消按钮(cancelButton)
     showCancel:{
       type: Boolean,

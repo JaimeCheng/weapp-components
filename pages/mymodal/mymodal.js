@@ -37,7 +37,7 @@ Page({
     if (e.detail.confirm)  {
       // 用户点击确定
       console.log('用户点击确定')
-      // 如果使用了prompt属性 表单携带数据如下
+      // 如果type=prompt 表单携带数据如下
       const formData = e.detail.formData
       console.log(formData)
     } else {
