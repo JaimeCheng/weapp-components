@@ -154,38 +154,39 @@ Component({
     //确定按钮响应事件
     confirmFunc: function (e) {
       var myEventDetail = {
-        confirm: true
+        confirm: true,
+        carriedData: {}
       } 
-      // detail对象，提供给事件监听函数
-      if (this.data.prompt)  {
-        myEventDetail.formData = e.detail.value  
-      }
-      // 触发事件的选项
-      var myEventOption = {} 
-      this.triggerEvent('complete', myEventDetail, myEventOption)
-    },
 
-    //用户授权事件
-    getUserInfo: function (e) {
-      var that = this
-      //同意授权 
-      if (e.detail.userInfo) {
-        app.globalData.userInfo = e.detail.userInfo
-        app.globalData.hasUserInfo = true
-        var myEventDetail = {
-          confirm: true,
-          userInfo: e.detail.userInfo,
-          hasUserInfo: true
-        } 
-      } else {
-        // 拒绝
-        var myEventDetail = {
-          confirm: true,
-          hasUserInfo: false
-        } 
+      if (this.data.type === 'prompt')  {
+        myEventDetail.carriedData.formData = e.detail.value  
+        this.triggerEvent('complete', myEventDetail)
       }
-      this.triggerEvent('complete', myEventDetail)
-    },
+
+      if (this.data.type === 'openSetting') {
+        wx.openSetting({
+          success: res => {
+            myEventDetail.carriedData.authSetting = res.authSetting
+            this.triggerEvent('complete', myEventDetail)
+          }
+        })
+      }
+
+      if (this.data.type === 'getUserInfo') {
+        //同意授权 
+        if (e.detail.userInfo) {
+          myEventDetail.carriedData.hasUserInfo = true
+          myEventDetail.carriedData.userInfo = e.detail.userInfo
+        } else {
+          // 拒绝
+          myEventDetail.carriedData.hasUserInfo = false
+        }
+        this.triggerEvent('complete', myEventDetail)
+      }
+
+     
+    }
+
   }
 })
 

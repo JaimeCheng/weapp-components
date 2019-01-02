@@ -9,17 +9,23 @@
   </view>
 
   <!-- 打开可提交表单模态框 -->
-  <button class="mybtn" type="primary" bindtap="openNormalModal" >打开可提交表单模态框</button>
-  <text>{{tips}}</text>
+  <button class="mybtn" type="primary" bindtap="openPromptModal" >打开可提交表单模态框</button>
+   <button class="mybtn" type="primary" bindtap="openShareModal" >打开可转发的模态框</button>
+   <button class="mybtn" type="primary" bindtap="openSettingModal" >打开设置页 的模态框</button>
+  <text>{{datas}}</text>
 
 </view>
 
-<!-- 可提交表单模态框 type="prompt"-->
-<!--type = promp时，必须设置表单输入项 form-item="{{items}}" -->
-<!-- type=''或 不设置时就是普通模态框 和小程序原生的一样,没意义 -->
-<mymodal show-status="{{showPromptModal}}" type="prompt" showCancel bind:complete="onPromptComplete" content='{{content}}' confirm-text="{{confirmText}}" form-items="{{items}}" title="{{title}}"></mymodal>
+
+<!-- type必须设置 -->
+<!--type = 'prompt'时，必须设置表单输入项 form-item="{{items}}" -->
+
+<!-- 微信开放能力 -->
+<!-- type='share' 页面生命周期需声明onShareAppMessage -->
+<!-- type='openSetting' -->
+<!-- type="getUserInfo"-->
+
+<!-- show-status='{{showModal}}' 初始设为true为了演示用，项目中应先wx.getSetting查看用户是否已经授权，未授权show-status初始设为true将主动弹出该弹框，若已授权show-status初始设为false避免多次弹出-->
 
 
-<!-- 可进行用户授权操作的模态框 type="getUserInfo"-->
-<!-- show-status='{{showUserModal}}' 此处初始设为true为了演示用，项目中应先wx.getSetting查看用户是否已经授权，未授权初始设为true将主动弹出该弹框，若已授权初始设为false避免多次弹出-->
-<mymodal show-status='{{showUserModal}}' type="getUserInfo" bind:complete="onUserInfoComplete"  content='{{content}}' confirm-text='{{confirmText}}' title='{{title}}'></mymodal>
+<mymodal show-status='{{showModal}}' type="{{type}}" showCancel="{{showCancel}}" content='{{content}}' confirm-text='{{confirmText}}' bind:complete="onComplete" title='{{title}}' form-items="{{items}}"></mymodal>

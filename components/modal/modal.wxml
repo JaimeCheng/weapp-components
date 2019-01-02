@@ -16,10 +16,18 @@
         <button class="btn celbtn" hover-class="btnHover" bindtap="cancelFunc">{{cancelText}}</button>
       </block>
       <block wx:if="{{type === 'getUserInfo'}}">
-        <button class="btn cfirbtn" hover-class="btnHover" open-type="getUserInfo" bindgetuserinfo="getUserInfo">{{confirmText}}</button>
+        <button class="btn cfirbtn" hover-class="btnHover" open-type="getUserInfo" bindgetuserinfo="confirmFunc">{{confirmText}}</button>
       </block>
-      <block wx:else>
+      <block wx:if="{{type === 'prompt'}}">
         <button class="btn cfirbtn" hover-class="btnHover" form-type="submit">{{confirmText}}</button>
+      </block>
+      <block wx:if="{{type === 'share'}}">
+
+        <!-- data-type="modalShare"为了在使用组件的页面里区分转发按钮来自本模态框 -->
+        <button class="btn cfirbtn" hover-class="btnHover" data-type="modalShare" open-type="share">{{confirmText}}</button>
+      </block>
+       <block wx:if="{{type === '' || type === 'openSetting'}}">
+        <button class="btn cfirbtn" hover-class="btnHover" bindtap="confirmFunc">{{confirmText}}</button>
       </block>
     </view>
   </form>
