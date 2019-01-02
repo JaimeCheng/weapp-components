@@ -21,5 +21,5 @@
 
 <!-- 可进行用户授权操作的模态框 -->
 <!-- show-status='{{showUserModal}}' 此处初始设为true为了演示用，项目中应先wx.getSetting查看用户是否已经授权，未授权初始设为true将主动弹出该弹框，若已授权初始设为false避免多次弹出-->
-<!-- user-data属性和prompt属性同时设置时，视为普通弹框 将不会触发授权操作 -->
+<!-- user-data属性和prompt属性请不要同时设置 -->
 <mymodal show-status='{{showUserModal}}' user-data bind:complete="onUserInfoComplete"  content='{{content}}' confirm-text='{{confirmText}}' title='{{title}}'></mymodal>
