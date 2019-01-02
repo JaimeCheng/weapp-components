@@ -154,19 +154,18 @@ Component({
     //确定按钮响应事件
     confirmFunc: function (e) {
       var myEventDetail = {
-        confirm: true,
-        carriedData: {}
+        confirm: true
       } 
 
       if (this.data.type === 'prompt')  {
-        myEventDetail.carriedData.formData = e.detail.value  
+        myEventDetail.formData = e.detail.value  
         this.triggerEvent('complete', myEventDetail)
       }
 
       if (this.data.type === 'openSetting') {
         wx.openSetting({
           success: res => {
-            myEventDetail.carriedData.authSetting = res.authSetting
+            myEventDetail.authSetting = res.authSetting
             this.triggerEvent('complete', myEventDetail)
           }
         })
@@ -175,11 +174,11 @@ Component({
       if (this.data.type === 'getUserInfo') {
         //同意授权 
         if (e.detail.userInfo) {
-          myEventDetail.carriedData.hasUserInfo = true
-          myEventDetail.carriedData.userInfo = e.detail.userInfo
+          myEventDetail.hasUserInfo = true
+          myEventDetail.userInfo = e.detail.userInfo
         } else {
           // 拒绝
-          myEventDetail.carriedData.hasUserInfo = false
+          myEventDetail.hasUserInfo = false
         }
         this.triggerEvent('complete', myEventDetail)
       }

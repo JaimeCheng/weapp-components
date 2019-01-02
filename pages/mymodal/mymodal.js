@@ -68,16 +68,16 @@ Page({
       console.log('用户点击确定')
       
       // 携带数据
-      console.log(e.detail.carriedData)
+      console.log(e.detail)
 
       // 各个type的处理 这里为了方便写到一起了
 
       if (this.data.type === 'getUserInfo') {
-        if (e.detail.carriedData.hasUserInfo) {
+        if (e.detail.hasUserInfo) {
           // 已经授权
           this.setData({
             hasUserInfo: true,
-            userInfo: e.detail.carriedData.userInfo
+            userInfo: e.detail.userInfo
           })
         } else {
           wx.showToast({
@@ -88,14 +88,14 @@ Page({
       }
 
       if (this.data.type === 'prompt') {
-        var formData = e.detail.carriedData.formData
+        var formData = e.detail.formData
         this.setData({
           datas: `表单携带数据：${JSON.stringify(formData)}`
         })
       }
 
       if (this.data.type === 'openSetting') {
-        var authSetting = e.detail.carriedData.authSetting
+        var authSetting = e.detail.authSetting
         this.setData({
           datas: `授权数据：${JSON.stringify(authSetting)}`
         })
