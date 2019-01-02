@@ -48,6 +48,7 @@ Page({
   openSettingModal: function () {
     this.setData({
       showModal: true,
+      confirmText: '打开',
       type: 'openSetting',
       content: '我可以打开设置页，微信开放能力 open-type="openSetting"',
       showCancel: true
