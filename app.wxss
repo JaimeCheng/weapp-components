@@ -12,7 +12,7 @@
 .mybtn{
   display: block;
   width: 70%;
-  margin: 40rpx auto;
+  margin: 20rpx auto;
 } 
 .userinfo {
   display: flex;
