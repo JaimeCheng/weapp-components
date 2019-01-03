@@ -80,6 +80,7 @@ Page({
             hasUserInfo: true,
             userInfo: e.detail.userInfo
           })
+          app.globalData.userInfo = e.detail.userInfo
         } else {
           wx.showToast({
             title: '您拒绝了授权',
@@ -100,6 +101,14 @@ Page({
         this.setData({
           datas: `授权数据：${JSON.stringify(authSetting)}`
         })
+        // 这里 是假如用户在设置页关掉授权的业务处理 项目中按自己的需求来处理即可
+        if (!authSetting['scope.userInfo']) {
+          this.setData({
+            hasUserInfo: false,
+            userInfo: null
+          })
+          app.globalData.userInfo = null
+        }
       }
 
     } else {

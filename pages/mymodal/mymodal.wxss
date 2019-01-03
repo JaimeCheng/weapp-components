@@ -1,1 +1,4 @@
 /* pages/mymodal/mymodal.wxss */
+text{
+  font-size: 28rpx;
+}

@@ -13,7 +13,7 @@
    <button class="mybtn" type="primary" bindtap="openShareModal" >打开可转发的模态框</button>
    <button class="mybtn" type="primary" bindtap="openSettingModal" >打开设置页 的模态框</button>
   <text>{{datas}}</text>
-
+  <text style="color:red;">可进行授权的modal本示例中为主动弹出，不需要按钮触发，示例中打开页面就会弹出该modal(未判断是否已经授权)，真实项目中应先wx.getSetting查看用户是否已经授权，未授权show-status初始设为true将主动弹出该弹框，若已授权show-status初始设为false避免多次弹出。按自己的需求来设定授权modal初始显隐状态。</text>
 </view>
 
 
@@ -25,7 +25,7 @@
 <!-- type='openSetting' -->
 <!-- type="getUserInfo"-->
 
-<!-- show-status='{{showModal}}' 初始设为true为了演示用，项目中应先wx.getSetting查看用户是否已经授权，未授权show-status初始设为true将主动弹出该弹框，若已授权show-status初始设为false避免多次弹出-->
+<!-- show-status='{{showModal}}' 初始设为true为了演示用，项目中应先wx.getSetting查看用户是否已经授权，未授权show-status初始设为true将主动弹出该弹框，若已授权show-status初始设为false避免多次弹出。按自己的需求来设定授权modal初始显隐状态-->
 
 
 <mymodal show-status='{{showModal}}' type="{{type}}" showCancel="{{showCancel}}" content='{{content}}' confirm-text='{{confirmText}}' bind:complete="onComplete" title='{{title}}' form-items="{{items}}"></mymodal>
