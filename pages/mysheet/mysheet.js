@@ -21,5 +21,9 @@ Page({
       title: '我是普通按钮',
       icon: 'none'
     })
+  },
+
+  onActionHide: function () {
+    console.log('ActionSheet关闭了')
   }
 })
