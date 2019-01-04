@@ -28,4 +28,4 @@
 <!-- show-status='{{showModal}}' 初始设为true为了演示用，项目中应先wx.getSetting查看用户是否已经授权，未授权show-status初始设为true将主动弹出该弹框，若已授权show-status初始设为false避免多次弹出。按自己的需求来设定授权modal初始显隐状态-->
 
 
-<mymodal show-status='{{showModal}}' type="{{type}}" showCancel="{{showCancel}}" content='{{content}}' confirm-text='{{confirmText}}' bind:complete="onComplete" title='{{title}}' form-items="{{items}}"></mymodal>
+<mymodal showStatus='{{showModal}}' type="{{type}}" showCancel="{{showCancel}}" content='{{content}}' confirm-text='{{confirmText}}' bind:complete="onComplete" title='{{title}}' form-items="{{items}}"></mymodal>

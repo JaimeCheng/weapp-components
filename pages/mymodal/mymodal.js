@@ -25,6 +25,7 @@ Page({
       showModal: true,
       type: 'prompt',
       content: '',
+      confirmText: '提交',
       showCancel: true
     })
   },
