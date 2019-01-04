@@ -3,7 +3,7 @@
 
 ```
 |--Components // 自定义组件目录
-|   |--actionsheet // 自定义底部菜单组件
+|   |--actionsheet // 自定义底部菜单组件ActionSheet
 |   |--modal // 自定义modal模态框组件
 ```
 
