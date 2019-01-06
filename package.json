@@ -1,0 +1,27 @@
+{
+  "name": "weapp-components",
+  "version": "1.0.0",
+  "description": "wx-miniprogram custom-components demo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaimeCheng/weapp-components.git"
+  },
+  "keywords": [
+    "miniprogram",
+    "custom-components"
+  ],
+  "author": "JaimeCheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JaimeCheng/weapp-components/issues"
+  },
+  "homepage": "https://github.com/JaimeCheng/weapp-components#readme",
+  "dependencies": {
+    "wx-miniprogram-actionsheet": "^1.0.2",
+    "wx-miniprogram-modal": "^1.0.3"
+  }
+}
