@@ -2,6 +2,6 @@
   "enablePullDownRefresh": false,
   "navigationBarTitleText": "自定义ActionSheet",
   "usingComponents": {
-    "action-sheet": "wx-miniprogram-actionsheet"
+    "action-sheet": "../../components/wx-miniprogram-actionsheet/index"
   }
 }

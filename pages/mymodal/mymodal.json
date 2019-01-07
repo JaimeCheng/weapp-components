@@ -2,6 +2,6 @@
   "enablePullDownRefresh": false,
   "navigationBarTitleText": "自定义modal",
   "usingComponents": {
-    "mymodal": "wx-miniprogram-modal"
+    "mymodal": "../../components/wx-miniprogram-modal/index"
   }
 }
