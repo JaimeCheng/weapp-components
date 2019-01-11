@@ -1,6 +1,7 @@
 <!--pages/bgm/bgm.wxml-->
 <view class='box'></view>
 <view class='box' style='position: relative'>
-  <mybgm src="{{src}}" autoplay="{{false}}" type="single"></mybgm>
+  <!-- <mybgm src="{{src}}" autoplay="{{false}}" type="single"></mybgm> -->
+  <mybgm src="{{src}}" autoplay="{{false}}" type="global"></mybgm>
 </view>
 <!-- 对定位的元素的位置相对于最近的已定位祖先元素，如果元素没有已定位的祖先元素，那么它的位置相对于最初的包含块。 -->

@@ -1,7 +1,8 @@
 // Components/bgmControl.js
 // 生命周期最低 2.2.3 
 // 其他最低1.9.90
-
+var innerAudioContext
+var init
 Component({
   /**
    * 组件的属性列表
@@ -44,8 +45,9 @@ Component({
     },
     type: {
       type: String,
-      value: 'single',
-      observer: function (newVal, oldVal) {}
+      value: '',
+      observer: function (newVal, oldVal) {
+      }
     },
     hidePlay: {
       type: Boolean,
@@ -67,23 +69,62 @@ Component({
   lifetimes: {
     created () {
       // 在组件实例刚刚被创建时执行
-      this.innerAudioContext = wx.createInnerAudioContext()
+      init = wx.createInnerAudioContext()
     },
     attached() {
       // 在组件实例进入页面节点树时执行
-      this.innerAudioContext.src = this.properties.src
-      this.innerAudioContext.autoplay = this.properties.autoplay
-      this.innerAudioContext.loop = this.properties.loop
-      if (this.properties.autoplay) {
+      init.onPlay(() => {
+        console.log('play')
         this.setData({
           bgmSrc: this.properties.playicon
         })
-      } else {
+      })
+      init.onPause(() => {
+        console.log('pause')
         this.setData({
-          bgmSrc: this.properties.pauseicon,
-          mypause: true
+          bgmSrc: this.properties.pauseicon
         })
+      })
+      init.onStop(() => {
+        this.setData({
+          bgmSrc: this.properties.pauseicon
+        })
+      })
+
+      if (!innerAudioContext) {
+        if (this.properties.autoplay) {
+          this.setData({
+            bgmSrc: this.properties.playicon
+          })
+        } else {
+          this.setData({
+            bgmSrc: this.properties.pauseicon,
+            mypause: true
+          })
+        }
+      } else {
+        if (innerAudioContext.paused) {
+          this.setData({
+            bgmSrc: this.properties.pauseicon
+          })
+        } else {
+          this.setData({
+            bgmSrc: this.properties.playicon
+          })
+        }
       }
+      if (this.properties.type === 'single') {
+        this.innerAudioContext = init
+        this.innerAudioContext.src = this.properties.src
+        this.innerAudioContext.autoplay = this.properties.autoplay
+        this.innerAudioContext.loop = this.properties.loop
+      }
+      if (this.properties.type === 'global' && !innerAudioContext) {
+        innerAudioContext = init
+        innerAudioContext.src = this.properties.src
+        innerAudioContext.autoplay = this.properties.autoplay
+        innerAudioContext.loop = this.properties.loop
+      } 
     },
 
     detached () {
@@ -118,19 +159,34 @@ Component({
    */
   methods: {
     bgmControl: function () {
-      if (this.innerAudioContext.paused) {
-        this.innerAudioContext.play()
-        this.setData({
-          bgmSrc: this.properties.playicon,
-          mypause: false
-        })
-      } else {
-        this.innerAudioContext.pause()
-        this.setData({
-          bgmSrc: this.properties.pauseicon,
-          mypause: true
-        })
+      if (this.properties.type === 'single') {
+        if (this.innerAudioContext.paused) {
+          this.innerAudioContext.play()
+          this.setData({
+            bgmSrc: this.properties.playicon,
+            mypause: false
+          })
+        } else {
+          this.innerAudioContext.pause()
+          this.setData({
+            bgmSrc: this.properties.pauseicon,
+            mypause: true
+          })
+        }
       }
+      if (this.properties.type === 'global') {
+        if (innerAudioContext.paused) {
+          innerAudioContext.play()
+          this.setData({
+            bgmSrc: this.properties.playicon
+          })
+        } else {
+          innerAudioContext.pause()
+          this.setData({
+            bgmSrc: this.properties.pauseicon
+          })
+        }
+      }    
     },
   }
 })
