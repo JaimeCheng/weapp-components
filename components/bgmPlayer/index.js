@@ -1,0 +1,134 @@
+// Components/bgmControl.js
+
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    id: {
+      type: String,
+      value: '',
+      observer: function (newVal, oldVal) { }
+    },
+    src: {
+      type: String,
+      value:  '',
+      observer: function (newVal, oldVal) {}
+    },
+    pauseicon: {
+      type: String,
+      value: 'off.png',
+      observer: function (newVal, oldVal) {}
+    },
+    playicon: {
+      type: String,
+      value: 'on.png',
+      observer: function (newVal, oldVal) { }
+    },
+    autoplay: {
+      type: Boolean,
+      value: true,
+      observer: function (newVal, oldVal) { }
+    },
+    loop: {
+      type: Boolean,
+      value: true,
+      observer: function (newVal, oldVal) { }
+    },
+    size: {
+      type: Number,
+      value: 60,
+      observer: function (newVal, oldVal) { }
+    },
+    type: {
+      type: String,
+      value: 'single',
+      observer: function (newVal, oldVal) {}
+    },
+    hidePlay: {
+      type: Boolean,
+      value: false,
+      observer: function (newVal, oldVal) { }
+    }
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+    bgmSrc: '',
+    mypause: false
+  },
+
+  externalClasses: ['bgm-class'],
+
+  lifetimes: {
+    created () {
+      // 在组件实例刚刚被创建时执行
+      this.innerAudioContext = wx.createInnerAudioContext()
+    },
+    attached() {
+      // 在组件实例进入页面节点树时执行
+      this.innerAudioContext.src = this.properties.src
+      this.innerAudioContext.autoplay = this.properties.autoplay
+      this.innerAudioContext.loop = this.properties.loop
+      if (this.properties.autoplay) {
+        this.setData({
+          bgmSrc: this.properties.playicon
+        })
+      } else {
+        this.setData({
+          bgmSrc: this.properties.pauseicon,
+          mypause: true
+        })
+      }
+    },
+
+    detached () {
+      // 在组件实例被从页面节点树移除时执行
+      if (this.properties.type === 'single') {
+        this.innerAudioContext.destroy()
+      }
+    }
+  },
+
+  pageLifetimes: {
+    show() {
+      // 页面被展示
+      if (this.properties.type === 'single') {
+        if (!this.data.mypause) {
+          this.innerAudioContext.play()
+        }
+      }
+    },
+    hide() {
+      // 页面被隐藏
+      if (this.properties.type === 'single') {
+        if (!this.properties.hidePlay) {
+          this.innerAudioContext.pause()
+        }
+      }
+    }
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    bgmControl: function () {
+      if (this.innerAudioContext.paused) {
+        this.innerAudioContext.play()
+        this.setData({
+          bgmSrc: this.properties.playicon,
+          mypause: false
+        })
+      } else {
+        this.innerAudioContext.pause()
+        this.setData({
+          bgmSrc: this.properties.pauseicon,
+          mypause: true
+        })
+      }
+    },
+  }
+})

@@ -1,0 +1,6 @@
+<!--Components/bgmControl.wxml-->
+<custom-component class="bgm-class">
+  <view class='bgm' bindtap='bgmControl'>
+    <image src='{{bgmSrc}}' mode='widthFix'></image>
+  </view>
+</custom-component>

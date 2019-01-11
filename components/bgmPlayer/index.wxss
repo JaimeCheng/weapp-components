@@ -1,0 +1,10 @@
+/* Components/bgmControl.wxss */
+.bgm{
+  width: 60rpx;
+  height: 60rpx;
+  z-index: 999;
+}
+
+.bgm image{
+  width: 100%;
+}
