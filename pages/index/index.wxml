@@ -11,4 +11,7 @@
   </view>
   <button type="primary" bindtap="modal">1. 自定义modal示例</button>
   <button type="primary" bindtap="sheet">2. 自定义ActionSheet示例</button>
+  <button type="primary" bindtap="bgm">3. 自定义bgm示例</button>
 </view>
+
+<mybgm bgm-class="mybgm" playicon="../../images/on.png" src="{{src}}" autoplay type="single" />

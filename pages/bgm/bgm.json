@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText": "自定义bgmPlayer",
+  "usingComponents": {
+    "mybgm": "../../components/bgmPlayer/index"
+  }
+}

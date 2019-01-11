@@ -6,7 +6,8 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    src: 'http://other.web.nf01.sycdn.kuwo.cn/resource/n1/51/55/2207647388.mp3',
   },
 
   onShow: function () {
@@ -47,6 +48,12 @@ Page({
   sheet: function () {
     wx.navigateTo({
       url: '../mysheet/mysheet',
+    })
+  },
+
+  bgm: function () {
+    wx.navigateTo({
+      url: '../bgm/bgm',
     })
   },
 
