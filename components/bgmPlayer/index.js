@@ -1,4 +1,6 @@
 // Components/bgmControl.js
+// 生命周期最低 2.2.3 
+// 其他最低1.9.90
 
 Component({
   /**
