@@ -7,7 +7,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    src: 'http://other.web.nf01.sycdn.kuwo.cn/resource/n1/51/55/2207647388.mp3',
+    src: 'http://music.163.com/song/media/outer/url?id=469513063.mp3',
   },
 
   onShow: function () {
@@ -65,5 +65,11 @@ Page({
         hasUserInfo: false
       })
     }
+  },
+
+  onEnded: function (e) {
+    this.setData({
+      src: 'http://music.163.com/song/media/outer/url?id=29822196.mp3'
+    })
   }
 })

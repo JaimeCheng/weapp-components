@@ -14,6 +14,6 @@
   <button type="primary" bindtap="bgm">3. 自定义bgm示例</button>
 </view>
 
-<!-- <mybgm bgm-class="mybgm" autoplay="{{false}}" playicon="../../images/on.png" src="{{src}}" type="single" /> -->
+<!-- <mybgm bgm-class="mybgm" bind:onEnded="onEnded" loop="{{false}}" playicon="../../images/on.png" src="{{src}}" type="single" /> -->
 
-<mybgm bgm-class="mybgm" autoplay="{{false}}" src="{{src}}" type="global" />
+<mybgm bind:onEnded="onEnded" bgm-class="mybgm" autoplay="{{false}}" loop="{{false}}" src="{{src}}" type="global" />

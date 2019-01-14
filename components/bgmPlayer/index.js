@@ -8,51 +8,59 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    id: {
-      type: String,
-      value: '',
-      observer: function (newVal, oldVal) { }
-    },
+
+    // 音源
     src: {
       type: String,
       value:  '',
-      observer: function (newVal, oldVal) {}
+      observer: function (newVal, oldVal) {
+        if (newVal && (innerAudioContext || this.innerAudioContext)) {
+          if (this.properties.type === 'single') {
+            this.innerAudioContext.src = newVal
+            this.innerAudioContext.play()
+          }
+          if (this.properties.type === 'global') {
+            innerAudioContext.src = newVal
+            innerAudioContext.play()
+          } 
+        }
+      }
     },
+
+    // 暂停Icon
     pauseicon: {
       type: String,
       value: 'off.png',
       observer: function (newVal, oldVal) {}
     },
+
+    // 播放Icon
     playicon: {
       type: String,
       value: 'on.png',
       observer: function (newVal, oldVal) { }
     },
+
+    // 自动播放
     autoplay: {
       type: Boolean,
       value: true,
       observer: function (newVal, oldVal) { }
     },
+
+    // 循环播放
     loop: {
       type: Boolean,
       value: true,
       observer: function (newVal, oldVal) { }
     },
-    size: {
-      type: Number,
-      value: 60,
-      observer: function (newVal, oldVal) { }
-    },
+
+    // 组件类型
     type: {
       type: String,
       value: '',
       observer: function (newVal, oldVal) {
       }
-    },
-    hidePlay: {
-      type: Boolean,
-      value: false,
-      observer: function (newVal, oldVal) { }
     }
   },
 
@@ -89,6 +97,12 @@ Component({
         this.setData({
           bgmSrc: this.properties.pauseicon
         })
+      })
+      init.onEnded(() => {
+        this.setData({
+          bgmSrc: this.properties.pauseicon
+        })
+        this.triggerEvent('onEnded', myEventDetail)
       })
 
       if (!innerAudioContext) {
@@ -158,6 +172,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
+
+    // 音乐暂停播放的控制
     bgmControl: function () {
       if (this.properties.type === 'single') {
         if (this.innerAudioContext.paused) {
@@ -187,6 +203,6 @@ Component({
           })
         }
       }    
-    },
+    }
   }
 })
