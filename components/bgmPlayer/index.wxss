@@ -8,3 +8,17 @@
 .bgm image{
   width: 100%;
 }
+
+.rotate {
+  animation: music-rotate 4s linear infinite;
+}
+
+@keyframes music-rotate {
+  0% {
+  transform: rotateZ(0deg);
+  }
+  
+  100% {
+  transform: rotateZ(360deg);
+  }
+}

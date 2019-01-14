@@ -12,17 +12,14 @@ Component({
     // 音源
     src: {
       type: String,
-      value:  '',
+      value: '',
       observer: function (newVal, oldVal) {
         if (newVal && (innerAudioContext || this.innerAudioContext)) {
           if (this.properties.type === 'single') {
+            console.log(222)
             this.innerAudioContext.src = newVal
             this.innerAudioContext.play()
           }
-          if (this.properties.type === 'global') {
-            innerAudioContext.src = newVal
-            innerAudioContext.play()
-          } 
         }
       }
     },
@@ -31,7 +28,7 @@ Component({
     pauseicon: {
       type: String,
       value: 'off.png',
-      observer: function (newVal, oldVal) {}
+      observer: function (newVal, oldVal) { }
     },
 
     // 播放Icon
@@ -58,9 +55,15 @@ Component({
     // 组件类型
     type: {
       type: String,
-      value: '',
+      value: 'single',
       observer: function (newVal, oldVal) {
       }
+    },
+
+    rotate: {
+      type: Boolean,
+      value: true,
+      observer: function (newVal, oldVal) { }
     }
   },
 
@@ -68,80 +71,72 @@ Component({
    * 组件的初始数据
    */
   data: {
-    bgmSrc: '',
-    mypause: false
+    bgmSrc: 'off.png',
+    mypause: false,
+    playing: false
   },
 
   externalClasses: ['bgm-class'],
 
   lifetimes: {
-    created () {
+    created() {
       // 在组件实例刚刚被创建时执行
       init = wx.createInnerAudioContext()
     },
     attached() {
+      if (this.properties.pauseicon) {
+        this.setData({
+          bgmSrc: this.properties.pauseicon
+        })
+      } else {
+        this.setData({
+          bgmSrc: 'off.png'
+        })
+      }
       // 在组件实例进入页面节点树时执行
       init.onPlay(() => {
         console.log('play')
         this.setData({
-          bgmSrc: this.properties.playicon
+          bgmSrc: this.properties.playicon,
+          playing: true
         })
       })
       init.onPause(() => {
         console.log('pause')
         this.setData({
-          bgmSrc: this.properties.pauseicon
+          bgmSrc: this.properties.pauseicon,
+          playing: false
         })
       })
       init.onStop(() => {
         this.setData({
-          bgmSrc: this.properties.pauseicon
+          bgmSrc: this.properties.pauseicon,
+          playing: false
         })
       })
       init.onEnded(() => {
         this.setData({
-          bgmSrc: this.properties.pauseicon
+          bgmSrc: this.properties.pauseicon,
+          playing: false
         })
-        this.triggerEvent('onEnded', myEventDetail)
+        this.triggerEvent('onEnded')
       })
 
-      if (!innerAudioContext) {
-        if (this.properties.autoplay) {
-          this.setData({
-            bgmSrc: this.properties.playicon
-          })
-        } else {
-          this.setData({
-            bgmSrc: this.properties.pauseicon,
-            mypause: true
-          })
-        }
-      } else {
-        if (innerAudioContext.paused) {
-          this.setData({
-            bgmSrc: this.properties.pauseicon
-          })
-        } else {
-          this.setData({
-            bgmSrc: this.properties.playicon
-          })
-        }
+      if (!this.properties.autoplay) {
+        this.setData({
+          mypause: true
+        })
       }
+
       if (this.properties.type === 'single') {
         this.innerAudioContext = init
         this.innerAudioContext.src = this.properties.src
         this.innerAudioContext.autoplay = this.properties.autoplay
         this.innerAudioContext.loop = this.properties.loop
       }
-      if (this.properties.type === 'global' && !innerAudioContext) {
-        innerAudioContext = init
-        innerAudioContext.src = this.properties.src
-        innerAudioContext.autoplay = this.properties.autoplay
-        innerAudioContext.loop = this.properties.loop
-      } 
     },
 
-    detached () {
+    detached() {
       // 在组件实例被从页面节点树移除时执行
       if (this.properties.type === 'single') {
         this.innerAudioContext.destroy()
@@ -180,29 +175,18 @@ Component({
           this.innerAudioContext.play()
           this.setData({
             bgmSrc: this.properties.playicon,
-            mypause: false
+            mypause: false,
+            playing: true
           })
         } else {
           this.innerAudioContext.pause()
           this.setData({
             bgmSrc: this.properties.pauseicon,
-            mypause: true
+            mypause: true,
+            playing: false
           })
         }
       }
-      if (this.properties.type === 'global') {
-        if (innerAudioContext.paused) {
-          innerAudioContext.play()
-          this.setData({
-            bgmSrc: this.properties.playicon
-          })
-        } else {
-          innerAudioContext.pause()
-          this.setData({
-            bgmSrc: this.properties.pauseicon
-          })
-        }
-      }    
     }
   }
 })
