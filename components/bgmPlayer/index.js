@@ -52,7 +52,7 @@ Component({
       observer: function (newVal, oldVal) { }
     },
 
-    // 组件类型
+    // 组件类型 single 单独页内使用,每次使用是独立的, 非全局
     type: {
       type: String,
       value: 'single',
