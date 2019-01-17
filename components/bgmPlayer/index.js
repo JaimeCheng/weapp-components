@@ -3,6 +3,7 @@
 // 其他最低1.9.90
 var innerAudioContext
 var init
+const app = getApp()
 Component({
   /**
    * 组件的属性列表
@@ -16,7 +17,6 @@ Component({
       observer: function (newVal, oldVal) {
         if (newVal && (innerAudioContext || this.innerAudioContext)) {
           if (this.properties.type === 'single') {
-            console.log(222)
             this.innerAudioContext.src = newVal
             this.innerAudioContext.play()
           }
