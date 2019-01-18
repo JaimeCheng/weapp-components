@@ -41,7 +41,7 @@ Component({
     // 自动播放
     autoplay: {
       type: Boolean,
-      value: true,
+      value: false,
       observer: function (newVal, oldVal) { }
     },
 
