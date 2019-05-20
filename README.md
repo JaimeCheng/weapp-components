@@ -10,3 +10,5 @@
 [ActionSheet使用文档](https://www.jianshu.com/p/d10b766300a7)
 
 [Modal使用文档](<https://www.jianshu.com/p/d10b766300a7>)
+
+### bgmPlayer组件还在测试中
