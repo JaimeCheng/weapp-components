@@ -13,7 +13,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.3",
+	"libVersion": "2.0.4",
 	"appid": "wxa01fa3cb5d55bba9",
 	"projectname": "my-custom-components",
 	"debugOptions": {
