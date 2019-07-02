@@ -15,7 +15,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
 	"appid": "wxa01fa3cb5d55bba9",
-	"projectname": "my-custom-components",
+	"projectname": "components",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
