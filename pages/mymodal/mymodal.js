@@ -14,6 +14,7 @@ Page({
     content: '为了更好的用户体验，需要您授权允许小程序使用您的基本信息，授权仅获取您的头像和昵称，不会涉及任何信息泄露，您可以放心使用本小程序。',
     confirmText: '好的',
     items: [{ label: '请输入姓名', name: 'name' }],
+    reportSubmit: true,
     datas: ''
   },
 
