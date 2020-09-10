@@ -13,7 +13,10 @@ Page({
     title: '提示',
     content: '为了更好的用户体验，需要您授权允许小程序使用您的基本信息，授权仅获取您的头像和昵称，不会涉及任何信息泄露，您可以放心使用本小程序。',
     confirmText: '好的',
-    items: [{ label: '请输入姓名', name: 'name' }],
+    items: [
+      { label: '请输入姓名', name: 'name', val: '初始值' },
+      { label: '请输入年龄', name: 'age', val: '' }
+    ],
     reportSubmit: true,
     datas: ''
   },
